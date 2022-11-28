@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Row, Col, Container, Accordion } from 'react-bootstrap';
 import IconText from './IconItems';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,35 +6,48 @@ import {faCreditCard, faWallet, faShieldAlt, faUserTie} from '@fortawesome/free-
 
 import './FAQ.scss';
 
-const Faq = () => (
+const Faq = () => {
+    const options = [
+        { icon: faCreditCard, text:'Cartão de crédito e débito'},
+        { icon: faWallet, text:'Conta e abertura'},
+        { icon: faShieldAlt,text:'Tolken digital'},
+        { icon: faUserTie, text:'Produtos e serviços'}
+
+    ];
+
+    const [index, setIndex] = useState(0);
+
+    return (
     <section className='faq text-light'>
     <Container className='py-5'>
+        <Row className='justify-content-center'>
+            <h2 className='faq-title my-5'>Dúvidas frequentes</h2>
+        </Row>
+         
         <Row className='d-flex align-items-center justify-content-center'>
             <Col className="d-lg-none mb-5" xs={12}>
                 <Row>
-                    <Col className='d-flex justify-content-center'>
-                        <FontAwesomeIcon icon={faCreditCard} size='2x' color="#FFF"/>
-                    </Col>
-                    <Col className='d-flex justify-content-center'>
-                        <FontAwesomeIcon icon={faWallet} size='2x' color="#FFF" />
-                    </Col>
-                    <Col className='d-flex justify-content-center'>
-                        <FontAwesomeIcon icon={faShieldAlt} size='2x' color="#FFF" />
-                    </Col>
-                    <Col className='d-flex justify-content-center'>
-                        <FontAwesomeIcon icon={faUserTie} size='2x' color="#FFF" />
-                    </Col>
+                    {
+                        options.map(({icon}, key) => (
+                            <Col className='d-flex justify-content-center' key={key}>
+                                <FontAwesomeIcon icon={icon} size='2x' color="#FFF" onClick={() => setIndex(key)}/>
+                            </Col>
+                        ))
+                    }
                 </Row>
             </Col>
-            <Col className="d-none d-lg-block">
-                <IconText icon={faCreditCard} size={3} className='mb-3' textClassName='lead' color="#FFF">Cartão de crédito e débito</IconText>
-                <IconText icon={faWallet} size={3} className='mb-3' textClassName='lead' color="#FFF">Conta e abertura</IconText>
-                <IconText icon={faShieldAlt} size={3} className='mb-3' textClassName='lead' color="#FFF">Tolken digital</IconText>
-                <IconText icon={faUserTie} size={3} textClassName='lead' color="#FFF">Produtos e serviços</IconText>
 
+            <Col className="d-none d-lg-block">
+
+                {
+                    options.map(({ icon, text }, key) => (
+                        <IconText icon={icon} size={3} className='mb-3' textClassName='lead' color="#FFF" onClick={() => setIndex(key)} key={key}> {text}</IconText>
+                    ))
+                }
+                
             </Col>
             <Col>
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey={`${index}`}>
                 <Accordion.Item eventKey="0" className='faq_card text-light'>
                     <Accordion.Header className='header'>Lorem ipsum dolor sit</Accordion.Header>
                     <Accordion.Body >
@@ -91,5 +104,8 @@ const Faq = () => (
 
 
 );
+
+} 
+
 
 export default Faq;
