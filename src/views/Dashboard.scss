@@ -1,0 +1,46 @@
+@import '../variables';
+
+.dashboard {
+
+    &__user-avatar {
+        position: relative;
+    }
+
+    &__user-icon {
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-100%);
+    }
+
+    &__button {
+        text-align: left;
+        color: $color-primary;
+        text-decoration: none;
+        &:hover,
+        &--active {
+            background-color: $color-primary;
+            text-decoration: none;
+            color: #fff;
+        }
+
+    }
+
+    &__informations {
+        
+        margin-top: 30px;
+
+        @media screen and (min-width: 992px) {
+            margin-top: 120px;
+            margin-left: 20px;}
+    }
+
+    &__informations h4 {
+        color:green;
+    }
+
+    &__informations p {
+        margin:0;
+    }
+
+}
