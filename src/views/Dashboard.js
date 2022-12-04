@@ -1,9 +1,16 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Routes , Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCircle } from '@fortawesome/free-solid-svg-icons';
 
+import AccountBalance from '../components/AccountBalance';
+import AccountPayment from '../components/AccountPayment';
+import AccountHistory from '../components/AccountHistory';
+
+
 import './Dashboard.scss';
+
  
 const Dashboard = () => (
     <Container className='dashboard py-4'>
@@ -23,27 +30,40 @@ const Dashboard = () => (
                         <p className='text-muted'>ag: 1123 c/c: 5811-1</p>
                     </Col>
                 </Row>
-                <Row><Button className='dashboard__button dashboard__button--active' variant='link' size='lg'>Minha conta</Button></Row>
-                <Row><Button variant='link' className='dashboard__button' size='lg'>Pagamentos</Button></Row>
-                <Row><Button variant='link' className='dashboard__button' size='lg'>Extrato</Button></Row>
-            </Col>
+                <Row>
+                    <Link to='/dashboard'>
+                        <Button className='dashboard__button' variant='link' size='lg'>Minha conta</Button>
+                    </Link>
 
-            <Col xs={12} lg={3} className='dashboard__informations'>
-                <h3 className='mb-4'>Conta Corrente</h3>
-                <h6>Saldo em conta corrente</h6>
-                <h4 className='mb-4'>
-                    <small>R$</small>4.000<small>,00</small> 
+                </Row>
+                    
                 
-                </h4>
-                <h6 className='mb-3'>Cheque especial</h6>
-                <p>Limite disponível</p>
-                <p>R$ 6.000,00</p>
-
-                <Button className='mt-4' variant='secondary'>Ver extrato</Button>
+                <Row>
+                    <Link to='/dashboard/payment'>
+                        <Button variant='link' className='dashboard__button' size='lg'>Pagamentos</Button>
+                    </Link>    
+                </Row>
+                    
+                    
+                <Row>
+                    <Link to='/dashboard/history'>
+                        <Button variant='link' className='dashboard__button' size='lg'>Extrato</Button>
+                    </Link>    
+                </Row>
+                    
+                    
             </Col>
+            
 
-            <Col xs={12} lg={6}>
-            </Col>
+        <Routes>
+               
+               <Route path='/' element={<AccountBalance />} />
+               <Route path='/payment' element={<AccountPayment />} />
+               <Route path='/history' element={<AccountHistory />} />
+
+           </Routes>
+           
+
         </Row>
     </Container>
 

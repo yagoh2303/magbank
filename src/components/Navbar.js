@@ -1,7 +1,5 @@
 import React from 'react'
 import "./Navbar.scss"
-
-import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -15,7 +13,7 @@ function Navigation() {
   return (
     <Navbar variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
         <img
               src={logo}
               height="30"
@@ -33,11 +31,11 @@ function Navigation() {
           <ButtonGroup aria-label="Basic example">
       <Button variant="outline-light">
       <NavDropdown title="Acessar minha conta" id="basic-nav-dropdown">
-              <NavDropdown.Item>
+              <NavDropdown.Item href='/login'>
                 
-                <Link to='/login'>Pessoa Física</Link></NavDropdown.Item>
+                Pessoa Física</NavDropdown.Item>
                 <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="/login">
                 Pessoa Jurídica
               </NavDropdown.Item>
              
